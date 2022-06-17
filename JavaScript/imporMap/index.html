@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Import Map</title>
+</head>
+
+<body>
+
+
+  <script type="importmap">
+    {
+      "imports": {
+        "lodash": "https://cdn.skypack.dev/lodash",
+        "lodash/": "https://cdn.skypack.dev/lodash/",
+        "ms": "https://cdn.skypack.dev/ms"
+      }
+    }
+  </script>
+  <!--Import Map-->
+  <script type="module" defer async>
+    import get from 'lodash/get';
+    import('lodash').then(res => {
+      console.log(res);
+    })
+    console.log(get);
+  </script>
+  <!--Import JSON-->
+  <script type="module">
+    import data from './data.json' assert { type: 'json' }
+    console.log(data);
+  </script>
+</body>
+
+</html>
