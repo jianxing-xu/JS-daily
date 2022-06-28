@@ -1,14 +1,9 @@
-const { spawn } = require('node:child_process');
-const ls = spawn('ls', ['-lh', '/usr']);
+import process from 'node:process';
 
-ls.stdout.on('data', (data) => {
-  console.log(`stdout: ${data}`);
+const unhandledRejections = new Map();
+process.on('unhandledRejection', (reason, promise) => {
+  unhandledRejections.set(promise, reason);
 });
-
-ls.stderr.on('data', (data) => {
-  console.error(`stderr: ${data}`);
-});
-
-ls.on('close', (code) => {
-  console.log(`child process exited with code ${code}`);
+process.on('rejectionHandled', (promise) => {
+  unhandledRejections.delete(promise);
 });

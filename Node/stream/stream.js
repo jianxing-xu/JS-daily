@@ -6,7 +6,7 @@ const server = http.createServer(function (req, res) {
   // fs.readFile(__dirname + '/stream.js', (err, data) => {
   //   res.end(data); // 一次写入
   // })
-  const stream = fs.createReadStream(__dirname + '/test_file.zip');
+  const stream = fs.createReadStream(__dirname + '/test_file.zip', 'binary');
   stream.pipe(res);
 });
 server.listen(3000);
